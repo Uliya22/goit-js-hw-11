@@ -26,7 +26,7 @@ async function onFormSubmit (e) {
     e.preventDefault();
   imagesColetion = e.currentTarget.searchQuery.value.trim();
   
-  console.log(imagesColetion);
+  // console.log(imagesColetion);
   currentPage = 1;
   currentHits = 40;
   loadMoreBtn.classList.add('is-hidden');
@@ -35,8 +35,11 @@ async function onFormSubmit (e) {
 
         if (
             imagesColetion === '') {
-        
-        return}
+              Notify.warning("Enter your request, please",{
+              clickToClose: true,
+              timeout: 3000});
+        return
+      }
       try {
         const imageCards = await getImageCards(imagesColetion, currentPage);
        
